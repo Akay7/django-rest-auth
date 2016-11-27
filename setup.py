@@ -34,6 +34,7 @@ setup(
     ],
     extras_require={
         'with_social': ['django-allauth>=0.25.0'],
+        'wiht_social_oauth2': ['django-oauth-toolkit==0.10.0'],
     },
     tests_require=[
         'responses>=0.5.0',
