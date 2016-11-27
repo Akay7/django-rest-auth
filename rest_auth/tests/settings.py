@@ -63,6 +63,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
     )
 }
 
@@ -88,7 +89,9 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
 
-    'rest_framework_jwt'
+    'rest_framework_jwt',
+
+    'oauth2_provider',
 ]
 
 SECRET_KEY = "38dh*skf8sjfhs287dh&^hd8&3hdg*j2&sd"

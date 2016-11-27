@@ -10,9 +10,14 @@ from rest_framework.decorators import api_view
 from rest_auth.urls import urlpatterns
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
+from rest_auth.registration.social_oauth2_views import OAuth2SocialLoginView
 
 
 class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+
+
+class FacebookOAuth2SocialLogin(OAuth2SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
 
 
@@ -46,6 +51,7 @@ urlpatterns += [
     url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(),
         name='account_confirm_email'),
     url(r'^social-login/facebook/$', FacebookLogin.as_view(), name='fb_login'),
+    url(r'^social-login/facebook-oauth2', FacebookOAuth2SocialLogin.as_view(), name='fb_login_oauth2'),
     url(r'^social-login/twitter/$', TwitterLogin.as_view(), name='tw_login'),
     url(r'^social-login/twitter-no-view/$', twitter_login_view, name='tw_login_no_view'),
     url(r'^social-login/twitter-no-adapter/$', TwitterLoginNoAdapter.as_view(), name='tw_login_no_adapter'),
